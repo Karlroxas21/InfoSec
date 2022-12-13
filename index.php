@@ -107,12 +107,48 @@
 
 							<div class="d-grid gap-2">
 								<button class="btn btn-lg btn-primary" type="submit">Sign in</button>
-								<a type='button' class='btn btn-lg btn-info' href='src/user_register.php'>Register Here</a>
+								<a (click)="oneEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-lg btn-info">Register here</a>
+								<!-- <a type='button' class='btn btn-lg btn-info' href='src/user_register.php'>Register Here</a> -->
 							</div>
 
 						</form>
 					</div>
 					
+					<!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Account Registration</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name</label>
+              <input type="text" formControlName="firstName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+			<div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="text" formControlName="firstName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="text" formControlName="lastName" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+              <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" *ngIf="showUpdate" (click)="updateEmployeeDetails()"class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
 					<!-- DISPOSE THIS. FOR TEST ONLY -->
 					<a class="btn btn-lg btn-primary" href="ui_admin_dashboard.php">test button</a>
 
