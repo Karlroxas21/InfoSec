@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Admin Dashboard</title>
+	<title>Post Management</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/dashboard.css">
 
@@ -30,7 +30,7 @@
         <div class="position-sticky pt-3 sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="ui_admin_dashboard.php">
+              <a class="nav-link" aria-current="page" href="ui_admin_dashboard.php">
                 <span data-feather="home" class="align-text-bottom"></span>
                 Dashboard
               </a>   
@@ -48,7 +48,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ui_manage_comment.php">
+              <a class="nav-link active" href="ui_manage_comment.php">
                 <span data-feather="message-circle" class="align-text-bottom"></span>
                 Posts Management
               </a>
@@ -59,38 +59,32 @@
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
+          <h1 class="h2">Password Management</h1>
         </div>
-        <!-- MY CODE -->
-        <div class="row">
-                <div class="col-sm-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h2 class="card-title">21</h2> <!-- Static message -->
-                      <p class="card-text">User Registrations</p>
-                      <a href="#" class="btn-primary">More info
-                        <img src="./assets/icons8-right-arrow-30.png" width="15px">
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h2 class="card-title">41, 690</h2> <!-- Static message -->
-                      <p class="card-text">Comments</p>
-                      <p class="card-text">21% increase in 30 days</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-                <div class="container">
-                    <canvas id="myChart"></canvas>
-                </div>
+        <div class="inner-container">
+                <table class="table mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Post Date</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of employeeData">
+                        <td>{{row.id}}</td>
+                        <td>{{row.firstName}}</td>
+                        <td>{{row.lastName}}</td>
+                        <td>
+                          <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
             </div>
-          
-              
+        </div>
+
         </div>
 
       </main>
@@ -106,30 +100,5 @@
     feather.replace()
   </script>
 
-<!-- CHART JS -->
-<script src="node_modules\chart.js\dist\chart.umd.js"></script>
-<script>
-        const ctx = document.getElementById('myChart');
-      
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
-            'August', 'September', 'October', 'November', 'December'],
-            datasets: [{
-              label: '# of What?',
-              data: [27, 19, 37, 5, 22, 23, 32, 19, 43, 55, 26, 36],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
 </body>
 </html>
