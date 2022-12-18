@@ -101,7 +101,7 @@ require_once('pagination-script.php');
 <!--====pagination content  start====-->
 <div class="pagination-content">
     
-<table class="table table-striped">
+<table class="table mt-3">
   <thead>
     <tr>
       <th scope="col">ID</th>
