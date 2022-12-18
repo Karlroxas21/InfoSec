@@ -11,6 +11,29 @@
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
   <script src="js/jquery.validate.min.js"></script>   
+
+  <style type="text/css">
+    .pagination-content{
+    width:100%;
+    text-align: justify;
+    padding:20px;
+    }
+    .pagination{
+    padding:20px;
+    }
+    .pagination a.active{
+    background: #f77404;
+    color: white;
+    }  
+    .pagination a{
+    text-decoration: none;
+    padding: 10px 15px;
+    box-shadow: 0px 0px 15px #0000001c;
+    background: white;
+    margin: 3px;
+    color: #1f1e1e;
+    }
+  </style>
 </head>
 
 <body>
@@ -62,32 +85,68 @@
           <h1 class="h2">Accounts Management</h1>
         </div>
         <div class="inner-container">
-                <table class="table mt-3">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Created Date</th>
-                        <th scope="col">Modified Date</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let row of employeeData">
-                        <td>{{row.id}}</td>
-                        <td>{{row.firstName}}</td>
-                        <td>{{row.lastName}}</td>
-                        <td>{{row.email}}</td>
-                        <td>
-                          <button (click)="oneEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
-                          <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
 
+        <!-- TABLE -->
+            
+<?php
+
+require_once('pagination-script.php');
+ $totalRecordsPerPage=10;
+ $tableName='tblaccounts';
+ $paginationData=pagination_records($totalRecordsPerPage,$tableName);
+ $sn=pagination_records_counter($totalRecordsPerPage);
+ $pagination=pagination($totalRecordsPerPage,$tableName);
+?>
+
+<!--====pagination content  start====-->
+<div class="pagination-content">
+    
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Creadted Date</th>
+      <th scope="col">Modified Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+    foreach ($paginationData as $data) {
+  ?>
+    <tr>
+      <td><?php echo $data['ID'];?></td>
+      <td><?php echo $data['Name'];?></td>
+      <td><?php echo $data['Email'];?></td>
+      <td><?php echo $data['CreatedDate'];?></td>
+      <td><?php echo $data['ModifiedDate'];?></td>
+      <td>
+          <button (click)="oneEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
+          <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
+        </td>
+    </tr>
+    <?php
+}
+?>
+  </tbody>
+</table>
+
+
+</div>
+<!--====pagination content end====-->
+<br><br>
+<!--====pagination section start====-->
+<div class="pagination">
+    
+<?php echo $pagination; ?>
+
+</div>
+<!--====pagination section end====-->
+
+<br><br><br>
+        <!-- END OF TABLE -->
         <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -124,7 +183,7 @@
 
       </main>
 
-      
+     
     </div>
   </div>
     
