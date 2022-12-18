@@ -1,0 +1,22 @@
+
+/* Pagination */
+.pagination-content{
+    width:100%;
+    text-align: justify;
+    padding:20px;
+}
+.pagination{
+    padding:20px;
+}
+.pagination a.active{
+background: #f77404;
+    color: white;
+}  
+.pagination a{
+    text-decoration: none;
+    padding: 10px 15px;
+    box-shadow: 0px 0px 15px #0000001c;
+    background: white;
+    margin: 3px;
+    color: #1f1e1e;
+}

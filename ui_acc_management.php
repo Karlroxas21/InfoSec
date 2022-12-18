@@ -7,33 +7,11 @@
 	<title>Account Management</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="style.css">
 
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
   <script src="js/jquery.validate.min.js"></script>   
-
-  <style type="text/css">
-    .pagination-content{
-    width:100%;
-    text-align: justify;
-    padding:20px;
-    }
-    .pagination{
-    padding:20px;
-    }
-    .pagination a.active{
-    background: #f77404;
-    color: white;
-    }  
-    .pagination a{
-    text-decoration: none;
-    padding: 10px 15px;
-    box-shadow: 0px 0px 15px #0000001c;
-    background: white;
-    margin: 3px;
-    color: #1f1e1e;
-    }
-  </style>
 </head>
 
 <body>
@@ -86,8 +64,7 @@
         </div>
         <div class="inner-container">
 
-        <!-- TABLE -->
-            
+<!-- TABLE -->    
 <?php
 
 require_once('pagination-script.php');
@@ -133,7 +110,6 @@ require_once('pagination-script.php');
   </tbody>
 </table>
 
-
 </div>
 <!--====pagination content end====-->
 <br><br>
@@ -147,6 +123,7 @@ require_once('pagination-script.php');
 
 <br><br><br>
         <!-- END OF TABLE -->
+
         <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

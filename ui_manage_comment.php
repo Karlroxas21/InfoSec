@@ -7,6 +7,7 @@
 	<title>Post Management</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="style.css">
 
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
@@ -61,27 +62,61 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Password Management</h1>
         </div>
-        <div class="inner-container">
-                <table class="table mt-3">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Message</th>
-                        <th scope="col">Post Date</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let row of employeeData">
-                        <td>{{row.id}}</td>
-                        <td>{{row.firstName}}</td>
-                        <td>{{row.lastName}}</td>
-                        <td>
-                          <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+        <div class="inner-container">   
+        <!-- TABLE -->    
+          <?php
+
+          require_once('pagination-script.php');
+          $totalRecordsPerPage=10;
+          $tableName='tblcomments';
+          $paginationData=pagination_records($totalRecordsPerPage,$tableName);
+          $sn=pagination_records_counter($totalRecordsPerPage);
+          $pagination=pagination($totalRecordsPerPage,$tableName);
+          ?>
+
+          <!--====pagination content  start====-->
+          <div class="pagination-content">
+              
+          <table class="table mt-3">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Message</th>
+                <th scope="col">Post Date </th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+              foreach ($paginationData as $data) {
+            ?>
+              <tr>
+                <td><?php echo $data['ID'];?></td>
+                <td><?php echo $data['Name'];?></td>
+                <td><?php echo $data['Email'];?></td>
+                <td>
+                    <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
+                  </td>
+              </tr>
+              <?php
+          }
+          ?>
+            </tbody>
+          </table>
+
+          </div>
+          <!--====pagination content end====-->
+          <br><br>
+          <!--====pagination section start====-->
+          <div class="pagination">
+              
+          <?php echo $pagination; ?>
+
+          </div>
+          <!--====pagination section end====-->
+
+          <br><br><br>
+                  <!-- END OF TABLE -->
             </div>
         </div>
 
