@@ -5,22 +5,22 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">	
 	<title>Post Management</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../style.css">
 
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/jquery-ui.min.js"></script>
-  <script src="js/jquery.validate.min.js"></script>   
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="../js/jquery.validate.min.js"></script>   
 </head>
 
 <body>
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="images/infosec.png" alt="Logo" width="120" height="24"/>
+        <img src="../images/infosec.png" alt="Logo" width="120" height="24"/>
       </a>
-      <a class="btn btn-outline-success" href="index.php">Logout</a>
+      <a class="btn btn-outline-success" href="../index.php">Logout</a>
     </div>
   </header>
 
@@ -31,7 +31,7 @@
         <div class="position-sticky pt-3 sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="ui_admin_dashboard.php">
+              <a class="nav-link" aria-current="page" href="../src/ui_admin_dashboard.php">
                 <span data-feather="home" class="align-text-bottom"></span>
                 Dashboard
               </a>   
@@ -43,13 +43,13 @@
           </h6>
           <ul class="nav flex-column mb-2">
             <li class="nav-item">
-              <a class="nav-link" href="ui_acc_management.php">
+              <a class="nav-link" href="../src/ui_acc_management.php">
                 <span data-feather="users" class="align-text-bottom"></span>
                 Accounts Management
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="ui_manage_comment.php">
+              <a class="nav-link active" href="../src/ui_manage_comment.php">
                 <span data-feather="message-circle" class="align-text-bottom"></span>
                 Posts Management
               </a>
@@ -65,8 +65,7 @@
         <div class="inner-container">   
         <!-- TABLE -->    
           <?php
-
-          require_once('pagination-script.php');
+          require_once('../script/pagination-script.php');
           $totalRecordsPerPage=10;
           $tableName='tblcomments';
           $paginationData=pagination_records($totalRecordsPerPage,$tableName);
@@ -95,7 +94,7 @@
                 <td><?php echo $data['Name'];?></td>
                 <td><?php echo $data['Email'];?></td>
                 <td>
-                    <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
+                    <button class="btn btn-danger mx-3">Delete</button>
                   </td>
               </tr>
               <?php

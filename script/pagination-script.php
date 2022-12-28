@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.php');
+require_once('../config.php');
 
 $db=$link; // enter your connection variable
 
@@ -26,7 +26,7 @@ function validate($value) {
 function pagination_records($totalRecordsPerPage,$tableName){
 
    global $db;
-   require_once('config.php');
+   require_once('../config.php');
    $currentPage=current_page();
    $totalPreviousRecords = ($currentPage-1) * $totalRecordsPerPage; 
 
@@ -158,4 +158,3 @@ function pagination($totalRecordsPerPage,$tableName){
 
   return $pagination;
 }
-?>
