@@ -13,7 +13,9 @@
   <script src="../js/jquery-ui.min.js"></script>
   <script src="../js/jquery.validate.min.js"></script>
 </head>
+
 <body>
+  
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -58,92 +60,9 @@
           <h1 class="h2">Accounts Management</h1>
         </div>
         <div class="inner-container">
-
-          <!-- TABLE -->
-          <?php
-          require_once('../script/pagination-script.php');
-          $totalRecordsPerPage = 10;
-          $tableName = 'tblaccounts';
-          $paginationData = pagination_records($totalRecordsPerPage, $tableName);
-          $sn = pagination_records_counter($totalRecordsPerPage);
-          $pagination = pagination($totalRecordsPerPage, $tableName); ?>
-
-          <!--====pagination content  start====-->
-          <div class="pagination-content">
-            <table class="table mt-3">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Creadted Date</th>
-                  <th scope="col">Modified Date</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                foreach ($paginationData as $data) {
-                ?>
-                  <tr>
-                    <td><?php echo $data['ID']; ?></td>
-                    <td><?php echo $data['Name']; ?></td>
-                    <td><?php echo $data['Email']; ?></td>
-                    <td><?php echo $data['CreatedDate']; ?></td>
-                    <td><?php echo $data['ModifiedDate']; ?></td>
-                    <td>
-                      <button (click)="oneEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-info">Edit</button>
-                      <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
-                    </td>
-                  </tr>
-                <?php
-                }
-                ?>
-              </tbody>
-            </table>
-          </div>
-          <!--====pagination content end====-->
-          <br><br>
-          <!--====pagination section start====-->
-          <div class="pagination">
-            <?php echo $pagination; ?>
-          </div>
-          <!--====pagination section end====-->
-
-          <br><br><br>
-          <!-- END OF TABLE -->
-
-          <!-- Modal -->
-          <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Student Details</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form [formGroup]="formValue">
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Name</label>
-                      <input type="text" fclass="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Email</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Password</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Update</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <?php
+          include('../script/account-table.php');
+        ?>
         </div>
       </main>
     </div>

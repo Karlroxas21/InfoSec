@@ -2,7 +2,7 @@
 
 require_once('../config.php');
 
-$db=$link; // enter your connection variable
+$db=$mysqli; // enter your connection variable
 
 // current page number
 function current_page(){
