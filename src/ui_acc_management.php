@@ -63,6 +63,10 @@
         <?php
           include('../script/account-table.php');
         ?>
+        <div class='pagination'>
+          <?php displayPagination($totalPages, $currentPage); ?>
+        </div>
+        
         </div>
       </main>
     </div>

@@ -77,15 +77,16 @@
     echo "</table>";
     
     // Display the pagination links
-    echo "<div class='pagination'>";
-    for ($i = 1; $i <= $totalPages; $i++) {
-        if ($i == $currentPage) {
-        echo "<span>$i</span>";
-        } else {
-        echo "<a href='?page=$i'>$i</a>";
+    function displayPagination($totalPages, $currentPage){
+        for ($i = 1; $i <= $totalPages; $i++) {
+            if ($i == $currentPage) {
+            echo "<span>$i</span>";
+            } else {
+            echo "<a href='?page=$i'>$i</a>";
+            }
         }
     }
-    echo "</div>";
+  
     
     // Check if the edit button has been clicked
     if (isset($_POST['edit'])) {

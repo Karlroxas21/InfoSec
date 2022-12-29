@@ -127,9 +127,9 @@
     </div>
   </div>
     
-  <script src="js/dashboard.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/feather.min.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/feather.min.js"></script>
   <script>
     feather.replace()
   </script>
