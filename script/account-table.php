@@ -24,7 +24,7 @@
     }
     
     // Determine the number of rows per page
-    $rowsPerPage = 10;
+    $rowsPerPage = 5;
     
     // Retrieve the total number of rows in the table
     $query = "SELECT COUNT(*) FROM tblaccounts";
@@ -86,10 +86,7 @@
             }
         }
     }
-  
-    function displayData(){
-        echo "Karl Testt";
-    }
+
     
     // Check if the edit button has been clicked
     // if (isset($_POST['edit'])) {
