@@ -63,6 +63,91 @@
         <?php
           include('../script/account-table.php');
         ?>
+      <table class="table mt-3">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Modified Date</th>
+          <th scope="col">Action</th>
+        </tr>
+      <?php while ($row = mysqli_fetch_assoc($result)) {
+         echo "<tr>";
+         echo "<td>" . $row['ID'] . "</td>";
+         echo "<td>" . $row['Name'] . "</td>";
+         echo "<td>" . $row['Email'] . "</td>";
+         echo "<td>" . $row['CreatedDate'] . "</td>";
+         echo "<td>" . $row['ModifiedDate'] . "</td>";
+         echo "<td>";
+         echo "<form method='post'>";
+         echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
+         echo "<button type='submit' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#editModal' name='edit'>Edit</button>";
+         echo "<button type='submit' class='btn btn-danger mx-3' name='delete'>Delete</button>";
+         echo "</form>";
+         echo "</td>";
+         echo "</tr>";
+        
+         } ?>
+      </table>
+
+      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+       <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModal">Account1 Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+             <?php 
+              if(isset($_POST['edit'])){
+                  // Retrieve the row to be edited
+                  $query = "SELECT * FROM tblaccounts WHERE ID = ?";
+                  $stmt = mysqli_prepare($mysqli, $query);
+                  mysqli_stmt_bind_param($stmt, 'i', $_POST['ID']);
+                  mysqli_stmt_execute($stmt);
+                  $result = mysqli_stmt_get_result($stmt);
+                  $row = mysqli_fetch_assoc($result);
+              
+                  // Display the form for editing the row
+                  echo "<form method='post'>";
+                  echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
+                  echo "<div class='mb-3'>";
+                    echo "<label for='Name'>Name:</label>";
+                    echo "<input type='text' id='Name' name='Name' value='" . $row['Name'] . "'>";
+                  echo "</div>";
+
+                  echo "<br>";
+
+                  echo "<div class='mb-3'>";
+                    echo "<label for='Email'>Email:</label>";
+                    echo "<input type='email' ID='Email' name='Email' value='" . $row['Email'] . "'>";
+                  echo "</div>";
+
+                    echo "<br>";
+
+                  echo "<div class='mb-3'>";  
+                    echo "<label for='Password'>Password:</label>";
+                    echo "<input type='password' ID='Password' name='Password' value='" . $row['Password'] . "'>";
+                  echo "</div>";
+
+                    echo "<br>";
+
+                  echo "<div class='modal-footer'>";
+                    // echo "<button id='cancel' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>";
+                    // echo "<button type='submit' class='btn btn-primary'  name='submit' value='Save'>Update</button>";
+                  echo "</div>";
+                  echo "</form>";
+              }
+              
+            ?> 
+          </div>
+        </div>
+       </div>
+      </div>
+
+
+        <!-- Display Pagination -->
         <div class='pagination'>
           <?php displayPagination($totalPages, $currentPage); ?>
         </div>
@@ -71,6 +156,7 @@
       </main>
     </div>
   </div>
+  
 
   <script src="../js/dashboard.js"></script>
   <script src="../js/bootstrap.min.js"></script>

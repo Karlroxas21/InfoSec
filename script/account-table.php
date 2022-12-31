@@ -24,7 +24,7 @@
     }
     
     // Determine the number of rows per page
-    $rowsPerPage = 5;
+    $rowsPerPage = 10;
     
     // Retrieve the total number of rows in the table
     $query = "SELECT COUNT(*) FROM tblaccounts";
@@ -49,32 +49,32 @@
     $result = mysqli_query($mysqli, $query);
     
     // Display the rows in a table
-    echo "<table>";
-    echo "<tr>";
-    echo "<th>ID</th>";
-    echo "<th>Name</th>";
-    echo "<th>Email</th>";
-    echo "<th>Created Date</th>";
-    echo "<th>Modified Date</th>";
-    echo "<th>Action</th>";
-    echo "</tr>";
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td>" . $row['ID'] . "</td>";
-        echo "<td>" . $row['Name'] . "</td>";
-        echo "<td>" . $row['Email'] . "</td>";
-        echo "<td>" . $row['CreatedDate'] . "</td>";
-        echo "<td>" . $row['ModifiedDate'] . "</td>";
-        echo "<td>";
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
-        echo "<input type='submit' name='edit' value='Edit'>";
-        echo "<input type='submit' name='delete' value='Delete'>";
-        echo "</form>";
-        echo "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
+    // echo "<table>";
+    // echo "<tr>";
+    // echo "<th>ID</th>";
+    // echo "<th>Name</th>";
+    // echo "<th>Email</th>";
+    // echo "<th>Created Date</th>";
+    // echo "<th>Modified Date</th>";
+    // echo "<th>Action</th>";
+    // echo "</tr>";
+    // while ($row = mysqli_fetch_assoc($result)) {
+    //     echo "<tr>";
+    //     echo "<td>" . $row['ID'] . "</td>";
+    //     echo "<td>" . $row['Name'] . "</td>";
+    //     echo "<td>" . $row['Email'] . "</td>";
+    //     echo "<td>" . $row['CreatedDate'] . "</td>";
+    //     echo "<td>" . $row['ModifiedDate'] . "</td>";
+    //     echo "<td>";
+    //     echo "<form method='post'>";
+    //     echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
+    //     echo "<input type='submit' name='edit' value='Edit'>";
+    //     echo "<input type='submit' name='delete' value='Delete'>";
+    //     echo "</form>";
+    //     echo "</td>";
+    //     echo "</tr>";
+    // }
+    // echo "</table>";
     
     // Display the pagination links
     function displayPagination($totalPages, $currentPage){
@@ -87,31 +87,34 @@
         }
     }
   
+    function displayData(){
+        echo "Karl Testt";
+    }
     
     // Check if the edit button has been clicked
-    if (isset($_POST['edit'])) {
-        // Retrieve the row to be edited
-        $query = "SELECT * FROM tblaccounts WHERE ID = ?";
-        $stmt = mysqli_prepare($mysqli, $query);
-        mysqli_stmt_bind_param($stmt, 'i', $_POST['ID']);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $row = mysqli_fetch_assoc($result);
+    // if (isset($_POST['edit'])) {
+    //     // Retrieve the row to be edited
+    //     $query = "SELECT * FROM tblaccounts WHERE ID = ?";
+    //     $stmt = mysqli_prepare($mysqli, $query);
+    //     mysqli_stmt_bind_param($stmt, 'i', $_POST['ID']);
+    //     mysqli_stmt_execute($stmt);
+    //     $result = mysqli_stmt_get_result($stmt);
+    //     $row = mysqli_fetch_assoc($result);
     
-        // Display the form for editing the row
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
-        echo "<label for='Name'>Name:</label>";
-        echo "<input type='text' id='Name' name='Name' value='" . $row['Name'] . "'>";
-        echo "<br>";
-        echo "<label for='Email'>Email:</label>";
-        echo "<input type='email' ID='Email' name='Email' value='" . $row['Email'] . "'>";
-        echo "<br>";
-        echo "<label for='Password'>Password:</label>";
-        echo "<input type='password' ID='Password' name='Password' value='" . $row['Password'] . "'>";
-        echo "<br>";
-        echo "<input type='submit' name='submit' value='Save'>";
-        echo "</form>";
-    }
+    //     // Display the form for editing the row
+    //     echo "<form method='post'>";
+    //     echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
+    //     echo "<label for='Name'>Name:</label>";
+    //     echo "<input type='text' id='Name' name='Name' value='" . $row['Name'] . "'>";
+    //     echo "<br>";
+    //     echo "<label for='Email'>Email:</label>";
+    //     echo "<input type='email' ID='Email' name='Email' value='" . $row['Email'] . "'>";
+    //     echo "<br>";
+    //     echo "<label for='Password'>Password:</label>";
+    //     echo "<input type='password' ID='Password' name='Password' value='" . $row['Password'] . "'>";
+    //     echo "<br>";
+    //     echo "<input type='submit' name='submit' value='Save'>";
+    //     echo "</form>";
+    // }
     
 ?>
