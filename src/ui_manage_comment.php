@@ -1,24 +1,24 @@
-
 <!doctype html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Post Management</title>
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post Management</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/dashboard.css">
   <link rel="stylesheet" href="../style.css">
 
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery-ui.min.js"></script>
-  <script src="../js/jquery.validate.min.js"></script>   
+  <script src="../js/jquery.validate.min.js"></script>
 </head>
 
 <body>
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="../images/infosec.png" alt="Logo" width="120" height="24"/>
+        <img src="../images/infosec.png" alt="Logo" width="120" height="24" />
       </a>
       <a class="btn btn-outline-success" href="../index.php">Logout</a>
     </div>
@@ -34,7 +34,7 @@
               <a class="nav-link" aria-current="page" href="../src/ui_admin_dashboard.php">
                 <span data-feather="home" class="align-text-bottom"></span>
                 Dashboard
-              </a>   
+              </a>
             </li>
           </ul>
 
@@ -62,71 +62,18 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Password Management</h1>
         </div>
-        <div class="inner-container">   
-        <!-- TABLE -->    
-          <?php
-          require_once('../script/pagination-script.php');
-          $totalRecordsPerPage=10;
-          $tableName='tblcomments';
-          $paginationData=pagination_records($totalRecordsPerPage,$tableName);
-          $sn=pagination_records_counter($totalRecordsPerPage);
-          $pagination=pagination($totalRecordsPerPage,$tableName);
-          ?>
-
-          <!--====pagination content  start====-->
-          <div class="pagination-content">
-              
-          <table class="table mt-3">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Message</th>
-                <th scope="col">Post Date </th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php
-              foreach ($paginationData as $data) {
-            ?>
-              <tr>
-                <td><?php echo $data['ID'];?></td>
-                <td><?php echo $data['Name'];?></td>
-                <td><?php echo $data['Email'];?></td>
-                <td>
-                    <button class="btn btn-danger mx-3">Delete</button>
-                  </td>
-              </tr>
-              <?php
-          }
-          ?>
-            </tbody>
-          </table>
-
-          </div>
-          <!--====pagination content end====-->
-          <br><br>
-          <!--====pagination section start====-->
-          <div class="pagination">
-              
-          <?php echo $pagination; ?>
-
-          </div>
-          <!--====pagination section end====-->
-
-          <br><br><br>
-                  <!-- END OF TABLE -->
-            </div>
-        </div>
+        <div class="inner-container">
 
         </div>
+
+
 
       </main>
 
-      
+
     </div>
   </div>
-    
+
   <script src="../js/dashboard.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/feather.min.js"></script>
@@ -135,4 +82,5 @@
   </script>
 
 </body>
+
 </html>

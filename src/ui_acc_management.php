@@ -82,11 +82,8 @@
                 echo "<td>" . $row['CreatedDate'] . "</td>";
                 echo "<td>" . $row['ModifiedDate'] . "</td>";
                 echo "<td>";
-                echo "<form method='post'>";
-                echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
-                echo "<input type='submit' class='btn btn-info' data-bs-toggle='modal' data-bs-target='#editModal' name='edit' value='Edit'>";
-                echo "<input type='submit' class='btn btn-danger mx-3' name='delete' value='Delete'>";
-                echo "</form>";
+                echo "<a type='button' class='btn btn-sm btn-info' href='../src/manage_acc.php?id=" . $row['ID'] . "'>Edit</a>|";
+                echo "<a type='button' class='btn btn-sm btn-danger' href='../script/delete.php?id=" . $row['ID'] . "'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
               } ?> 
@@ -94,51 +91,6 @@
             <!-- Display Pagination -->
             <div class='pagination'>
               <?php displayPagination($totalPages, $currentPage); ?>
-            </div>
-          </div>
-            <div class="inner-right-container">
-              <!-- EDIT DATA -->
-              <?php
-              if (isset($_POST['edit'])) {
-                // Retrieve the row to be edited
-                $query = "SELECT * FROM tblaccounts WHERE ID = ?";
-                $stmt = mysqli_prepare($mysqli, $query);
-                mysqli_stmt_bind_param($stmt, 'i', $_POST['ID']);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-                $row = mysqli_fetch_assoc($result);
-
-                // Display the form for editing the row
-                echo "<form method='post'>";
-                echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
-                echo "<div class='mb-3'>";
-                echo "<label for='Name' class='form-label' >Name:</label>";
-                echo "<input type='text' id='Name' name='Name' class='form-control' value='" . $row['Name'] . "'>";
-                echo "</div>";
-
-                echo "<br>";
-
-                echo "<div class='mb-3'>";
-                echo "<label for='Email' class='form-label' >Email:</label>";
-                echo "<input type='email' ID='Email' name='Email' class='form-control' value='" . $row['Email'] . "'>";
-                echo "</div>";
-
-                echo "<br>";
-
-                echo "<div class='mb-3'>";
-                echo "<label for='Password' class='form-label' >Password:</label>";
-                echo "<input type='password' ID='Password' name='Password' class='form-control' value='" . $row['Password'] . "'>";
-                echo "</div>";
-
-                echo "<br>";
-
-                echo "<div>";
-                echo "<button id='cancel' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>";
-                echo "<br>";
-                echo "<button type='submit' class='btn btn-primary'  name='submit' value='Save'>Update</button>";
-                echo "</div>";
-                echo "</form>";
-              } ?>
             </div>
           </div>
       </main> 
