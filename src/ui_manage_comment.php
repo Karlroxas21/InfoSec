@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/dashboard.css">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../DataTables/datatables.min.css">
 
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery-ui.min.js"></script>
@@ -60,25 +61,50 @@
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Password Management</h1>
+          <h1 class="h2">Post Management</h1>
         </div>
         <div class="inner-container">
-
+        <?php
+            include('../script/post-table.php');
+            ?>
+            <table id="table-comment" class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Message</th>
+                  <th scope="col">Post Date</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>";
+                    echo "<td>" . $row['ID'] . "</td>";
+                    echo "<td>" . $row['Message'] . "</td>";
+                    echo "<td>" . $row['PostDate'] . "</td>";
+                    echo "<td>";
+                      echo "<a type='button' class='btn btn-sm btn-danger' href='../script/post-delete.php?id=" . $row['ID'] . "'>Delete</a>";
+                    echo "</td>";
+                  echo "</tr>";
+                } ?> 
+              </tbody>
+            </table>
         </div>
-
-
-
       </main>
-
-
     </div>
   </div>
 
+  <script>
+    $(document).ready( function () {
+      $('#table-comment').DataTable();
+    } ); 
+  </script>
   <script src="../js/dashboard.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/feather.min.js"></script>
+  <script type="text/javascript" src="../DataTables/datatables.min.js"></script>  
   <script>
-    feather.replace()
+      feather.replace()
   </script>
 
 </body>

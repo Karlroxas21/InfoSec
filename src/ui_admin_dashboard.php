@@ -65,7 +65,9 @@
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h2 class="card-title">21</h2> <!-- Static message -->
+                  <!-- Number of users registered are stored here -->
+                <?php include('../script/count-user.php') ?>
+                <h2 class="card-title" id="total-reg"><?php echo $num_user_reg?></h2>
                 <p class="card-text">User Registrations</p>
                 <a href="#" class="btn-primary">More info
                   <img src="../assets/icons8-right-arrow-30.png" width="15px">
@@ -76,7 +78,8 @@
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h2 class="card-title">41, 690</h2> <!-- Static message -->
+              <?php include('../script/count-comment.php') ?>
+                <h2 class="card-title"><?php echo $total_comment ?></h2>
                 <p class="card-text">Comments</p>
                 <p class="card-text">21% increase in 30 days</p>
               </div>

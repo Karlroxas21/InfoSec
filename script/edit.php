@@ -4,7 +4,6 @@
     // To format date 
     date_default_timezone_set('Asia/Manila');
     $current_time = date('Y-m-d');
-   
 
     $id = $_POST['id'];
     $name = $_POST['name'];

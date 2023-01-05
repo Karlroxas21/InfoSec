@@ -6,6 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>BlogSite</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="./DataTables/datatables.min.css">
+
+	<script src="./js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -89,25 +92,22 @@
 					</div>
 					<div class="col-md-4">
 						<div class="row">
-							<form action="" class="form-control" id="frmLogin" enctype="multipart/form-data" autocomplete="off">
-								<input type="hidden" class="form-control" id="form_name" name="form_name" value="frmLogin">
+							<form action="script/login.php" method="POST" class="form-control" enctype="multipart/form-data" autocomplete="off">
 								<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
 								<div class="mb-3">
 									<label for="email" class="form-label">Email</label>
-									<input type="email" class="form-control" id="email" name="email">
+									<input type="email" class="form-control" name="email">
 								</div>
 
 								<div class="mb-3">
 									<label for="pass" class="form-label">Password</label>
-									<input type="password" class="form-control" id="pass" name="pass">
+									<input type="password" class="form-control" name="pass">
 								</div>
 
 								<div class="d-grid gap-2">
-									<button class="btn btn-lg btn-primary" type="submit">Sign in</button>
-									<a (click)="oneEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-lg btn-info">Register here</a>
-									<!-- <a type='button' class='btn btn-lg btn-info' href='src/user_register.php'>Register Here</a> -->
-								</div>
+									<button class="btn btn-lg btn-primary" type="submit" name="signin">Sign in</button>
+									<a  type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-lg btn-info">Register here</a>								</div>
 
 							</form>
 						</div>
@@ -121,15 +121,16 @@
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<form action="script/add.php" method="POST" name="frmAccountRegistration" enctype="multipart/form-data">
+										<form action="./script/add.php" method="POST">
 											<div class="mb-3">
 												<label for="Name" class="form-label">Name</label>
-												<input type="text" class="form-control" id="Name" name="Name" >
+												<input type="text" class="form-control" id="Name" name="Name">
 											</div>
 											<div class="mb-3">
 												<label for="Email" class="form-label">Email address</label>
 												<input type="email" class="form-control" id="Email" name="Email">
-											</div>											<div class="mb-3">
+											</div>
+											<div class="mb-3">
 												<label for="Password" class="form-label">Password</label>
 												<input type="password" class="form-control" id="Password" name="Password">
 											</div>
@@ -143,16 +144,13 @@
 							</div>
 						</div>
 
-						<!-- DISPOSE THIS. FOR TEST ONLY -->
-						<a class="btn btn-lg btn-primary" href="src/ui_acc_management.php">test button</a>
-
 						<div class="row" style="margin-top: 5px;">
-							<form action="" class="form-control" id="frmComments" name="frmComments" enctype="multipart/form-data" autocomplete="off">
+							<form action="./script/post-comment.php" method="POST" class="form-control" id="frmComments" name="frmComments" enctype="multipart/form-data" autocomplete="off">
 
 								<h1 class="h3 mb-3 fw-normal">Post Comments</h1>
 
 								<div class="mb-3">
-									<textarea id="comment" name="comment" style="width:100%; height: 228px;"></textarea>
+									<textarea name="comment" id="comment" style="width:100%; height: 228px;"></textarea>
 								</div>
 
 								<button class="btn btn-lg btn-primary" type="submit">Submit Post</button>
@@ -168,34 +166,36 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h1 class="h3 mb-3 fw-normal">Comments</h1>
-						<table class="table table-striped table-responsive">
-							<thead>
-								<tr>
-									<th scope="col">Message</th>
-									<th scope="col">Post Date</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<tr>
-									<td>Static Message</td>
-									<td>October 31, 2022</td>
-								</tr>
-								<tr>
-									<td>Static Message</td>
-									<td>October 31, 2022</td>
-								</tr>
-								<tr>
-									<td>Static Message</td>
-									<td>October 31, 2022</td>
-								</tr>
-							</tbody>
+						<?php include('script/comment-table.php'); ?>
+						<table id="comment-display" class="table mt-3">
+						<thead>
+							<tr>
+							<th scope="col">Message</th>
+							<th scope="col">Post Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php while ($row = mysqli_fetch_assoc($result)) {
+							echo "<tr>";
+								echo "<td>" . $row['Message'] . "</td>";
+								echo "<td>" . $row['PostDate'] . "</td>";
+							echo "</tr>";
+							} ?> 
+						</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</section>
 	</main>
+
+	
+	<script type="text/javascript" src="./DataTables/datatables.min.js"></script>
+	<script>
+  		$(document).ready( function () {
+    		$('#comment-display').DataTable();
+		} );
+	</script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 

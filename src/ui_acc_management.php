@@ -66,7 +66,7 @@
             <?php
             include('../script/account-table.php');
             ?>
-            <table id="table-bb" class="table mt-3">
+            <table id="table-acc" class="table mt-3">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -98,7 +98,7 @@
 
 <script>
   $(document).ready( function () {
-    $('#table-bb').DataTable();
+    $('#table-acc').DataTable();
   } ); 
 </script>
 <script src="../js/dashboard.js"></script>
