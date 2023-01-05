@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../DataTables/datatables.min.css">
 
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery-ui.min.js"></script>
@@ -65,39 +66,45 @@
             <?php
             include('../script/account-table.php');
             ?>
-            <table class="table mt-3">
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Created Date</th>
-                <th scope="col">Modified Date</th>
-                <th scope="col">Action</th>
-              </tr>
-              <?php while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['ID'] . "</td>";
-                echo "<td>" . $row['Name'] . "</td>";
-                echo "<td>" . $row['Email'] . "</td>";
-                echo "<td>" . $row['CreatedDate'] . "</td>";
-                echo "<td>" . $row['ModifiedDate'] . "</td>";
-                echo "<td>";
-                echo "<a type='button' class='btn btn-sm btn-info' href='../src/manage_acc.php?id=" . $row['ID'] . "'>Edit</a>|";
-                echo "<a type='button' class='btn btn-sm btn-danger' href='../script/delete.php?id=" . $row['ID'] . "'>Delete</a>";
-                echo "</td>";
-                echo "</tr>";
-              } ?> 
+            <table id="table-bb" class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Created Date</th>
+                  <th scope="col">Modified Date</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>";
+                    echo "<td>" . $row['ID'] . "</td>";
+                    echo "<td>" . $row['Name'] . "</td>";
+                    echo "<td>" . $row['Email'] . "</td>";
+                    echo "<td>" . $row['CreatedDate'] . "</td>";
+                    echo "<td>" . $row['ModifiedDate'] . "</td>";
+                    echo "<td>";
+                      echo "<a type='button' class='btn btn-sm btn-info' href='../src/manage_acc.php?id=" . $row['ID'] . "'>Edit</a>|";
+                      echo "<a type='button' class='btn btn-sm btn-danger' href='../script/delete.php?id=" . $row['ID'] . "'>Delete</a>";
+                    echo "</td>";
+                  echo "</tr>";
+                } ?> 
+              </tbody>
             </table>
-            <!-- Display Pagination -->
-            <div class='pagination'>
-              <?php displayPagination($totalPages, $currentPage); ?>
-            </div>
           </div>
       </main> 
 
+<script>
+  $(document).ready( function () {
+    $('#table-bb').DataTable();
+  } ); 
+</script>
 <script src="../js/dashboard.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/feather.min.js"></script>
+<script type="text/javascript" src="../DataTables/datatables.min.js"></script>
 <script>
   feather.replace()
 </script>
