@@ -69,7 +69,7 @@
                 <?php include('../script/count-user.php') ?>
                 <h2 class="card-title" id="total-reg"><?php echo $num_user_reg?></h2>
                 <p class="card-text">User Registrations</p>
-                <a href="#" class="btn-primary">More info
+                <a href="../src/ui_acc_management.php" class="btn-primary">More info
                   <img src="../assets/icons8-right-arrow-30.png" width="15px">
                 </a>
               </div>
