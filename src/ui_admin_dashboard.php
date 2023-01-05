@@ -81,18 +81,22 @@
               <?php include('../script/count-comment.php') ?>
                 <h2 class="card-title"><?php echo $total_comment ?></h2>
                 <p class="card-text">Comments</p>
-                <p class="card-text">21% increase in 30 days</p>
+                <!-- Add a increase percentage in past 30 days -->
+                <?php include('../script/comment-growth.php')?>
+                <p class="card-text"><?php echo "$percent_increase% increase in the number of comments in the past 30 days."?></p>
               </div>
             </div>
           </div>
         </div>
+        <?php include_once('../script/chart.php'); ?>
+   
 
         <div class="container">
           <canvas id="myChart"></canvas>
         </div>
       </main>
   </div>
-
+ 
 
   <script src="../js/dashboard.js"></script>
   <script src="../js/bootstrap.min.js"></script>
@@ -113,9 +117,9 @@
           'August', 'September', 'October', 'November', 'December'
         ],
         datasets: [{
-          label: '# of What?',
-          data: [27, 19, 37, 5, 22, 23, 32, 19, 43, 55, 26, 36],
-          borderWidth: 1
+          label: '# User Register',
+          data: <?php echo $num_row_each_month_json; ?>,
+          borderWidth: 2
         }]
       },
       options: {
