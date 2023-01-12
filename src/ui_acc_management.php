@@ -87,15 +87,53 @@
                     echo "<td>" . $row['ModifiedDate'] . "</td>";
                     echo "<td>";
                       echo "<a type='button' class='btn btn-sm btn-info' href='../src/manage_acc.php?id=" . $row['ID'] . "'>Edit</a>|";
-                      echo "<a type='button' class='btn btn-sm btn-danger' href='../script/delete.php?id=" . $row['ID'] . "'>Delete</a>";
+                      echo "<a type='button' class='btn btn-sm btn-danger delete-modal' id='btnDelete' name='btnDelete' data-bs-id='$row[ID]' data-bs-toggle='modal' data-bs-target='#myModal_delete'>Delete</a>";
                     echo "</td>";
                   echo "</tr>";
-                } ?> 
+                } mysqli_close($mysqli);?> 
               </tbody>
             </table>
           </div>
+
+          <!-- MODAL DELETE -->
+          <div class="modal" id="myModal_delete">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+              <form action="../script/delete.php" method="GET">
+                <input type="hidden" id="delete_id" name="delete_id" value="" readonly/>
+                <!-- Header -->
+                <div class="modal-header">
+                  <h4 class="modal-ttitle">Delete Account</h4>
+                  <button type="button" class="btn-close" btn-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- BODY -->
+                <div class="modal-body">
+                  You are about to delete this account profile. </br>
+                  This action cannot be undone. Are you sure you want to delete this record?
+                </div>
+
+                <!-- FOOTER -->
+                <div class="modal-footer">
+                  <button type="sbumit" class="btn btn-success">Proceed</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </form>
+
+              </div>
+            </div>
+          </div>
+          <!-- END OF MODAL DELETE -->
       </main> 
 
+<script>
+  $(document).ready(function (){
+    $('#table-acc').on('click', '.delete-modal', function(){
+      $('#delete_id').val($(this).attr('data-bs-id'));
+      });
+    });
+</script>     
 <script>
   $(document).ready( function () {
     $('#table-acc').DataTable();

@@ -117,7 +117,7 @@
           'August', 'September', 'October', 'November', 'December'
         ],
         datasets: [{
-          label: '# User Register',
+          label: '# Comments',
           data: <?php echo $num_row_each_month_json; ?>,
           borderWidth: 2
         }]

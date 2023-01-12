@@ -134,6 +134,10 @@
 												<label for="Password" class="form-label">Password</label>
 												<input type="password" class="form-control" id="Password" name="Password">
 											</div>
+											<div class="mb-3">
+												<label for="CPassword" class="form-label">Confirm Password</label>
+												<input type="password" class="form-control" id="CPassword" name="CPassword">
+											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 												<button type="submit" name="Submit" class="btn btn-primary">Save</button>
